@@ -1,0 +1,147 @@
+let diameter = 100;
+let radius = diameter / 2;
+
+let target_pos;
+let target_angle;
+let last_target_angle = 0;
+
+let husky_imu = 0;
+let husky_imu_delta;
+let husky_imu_drift = 0.001255;
+let last_husky_imu = 0;
+let husky_angle_delta = 0;
+
+let drone_imu;
+let drone_imu_delta;
+let drone_imu_drift = -0.001317;
+
+let camera_angle;
+
+let pos_red;
+let pos_blue;
+
+let box_pos_red;
+let box_pos_blue;
+
+let time_to_prediction;
+
+function setup() {
+  createCanvas(400, 400);
+  textSize(16);
+  
+  target_pos = createVector(200, 100);
+  time_to_prediction = 10;
+  box_pos_red = target_pos;
+  box_pos_blue = target_pos;
+}
+
+
+function draw() {
+  background(220);
+  
+  let target_angle = createVector(mouseX - target_pos.x, mouseY - target_pos.y).heading();
+  let angle_delta = target_angle - last_target_angle;
+  
+  camera_angle = p5.Vector.sub(box_pos_red, box_pos_blue).heading();
+  
+  husky_imu += angle_delta;
+  husky_imu += husky_imu_drift;
+  husky_angle_delta += (husky_imu - last_husky_imu);
+  last_husky_imu = husky_imu;
+  
+  let offset = createVector(diameter / 2, 0).setHeading(target_angle);
+  pos_red = p5.Vector.add(target_pos, offset);
+  pos_blue = p5.Vector.sub(target_pos, offset);
+  
+  drawRed();
+  drawBlue(); 
+  
+  // print stuff
+  fill(0);
+  stroke(0);
+  strokeWeight(1);
+  
+  textAlign(LEFT, TOP);
+  text("Angle: " + target_angle, 5, 5);
+  
+  let predicted_angle = camera_angle;
+  
+  let filteredAngle = predicted_angle + husky_angle_delta;
+  
+  updateBoxes();
+  drawBoxes();
+  
+  // print stuff
+  fill(0);
+  stroke(0);
+  strokeWeight(1);
+  textAlign(LEFT, CENTER)
+  text("Camera Angle: ", 120, 230);
+  text("Husky IMU Angle: " + husky_imu, 120, 290);
+  text("Filtered Angle: " + filteredAngle , 120, 350);
+  
+  drawIMU(60, 230, predicted_angle);
+  drawIMU(60, 290, husky_imu);
+  drawIMU(60, 350, filteredAngle);
+  
+  last_target_angle = target_angle;
+}
+
+function drawRed()
+{
+  noStroke();
+  fill(255, 100, 100);
+  circle(pos_red.x, pos_red.y, diameter);
+  fill(255);
+  circle(pos_red.x, pos_red.y, diameter * 0.75);
+  strokeWeight(diameter * 0.125);
+  stroke(255, 100, 100);
+  line(pos_red.x, pos_red.y - diameter * 0.4, pos_red.x, pos_red.y + diameter * 0.4);
+  line(pos_red.x - diameter * 0.4, pos_red.y, pos_red.x + diameter * 0.4, pos_red.y);
+}
+
+
+function drawBlue()
+{
+  noStroke();
+  fill(100, 100, 255);
+  circle(pos_blue.x, pos_blue.y, diameter);
+  fill(255);
+  circle(pos_blue.x, pos_blue.y, diameter * 0.75);
+  fill(100, 100, 255);
+  circle(pos_blue.x, pos_blue.y, diameter * 0.5);
+  fill(255);
+  circle(pos_blue.x, pos_blue.y, diameter * 0.25);
+}
+
+function updateBoxes()
+{
+  if (time_to_prediction < 0)
+  {
+    time_to_prediction = random(10, 50);
+    box_pos_red = pos_red;
+    box_pos_blue = pos_blue;
+    husky_angle_delta = 0;
+  }
+  else
+    time_to_prediction -= 1;
+}
+
+function drawIMU(x, y, angle)
+{
+  noStroke();
+  fill(0);
+  circle(x, y, 10);
+  stroke(0);
+  line(x, y, x + cos(angle) * 40, y + sin(angle) * 40);
+}
+
+function drawBoxes()
+{
+  noFill();
+  strokeWeight(2);
+  stroke(255, 0, 0);
+  square(box_pos_red.x - radius, box_pos_red.y - radius, diameter);
+  stroke(0, 0, 255);
+  square(box_pos_blue.x - radius, box_pos_blue.y - radius, diameter);
+}
