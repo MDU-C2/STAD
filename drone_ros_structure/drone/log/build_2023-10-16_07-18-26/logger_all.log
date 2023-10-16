@@ -1,0 +1,203 @@
+[1.975s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[1.975s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f3eb6bf0d00>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=4, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f3eb6bf0d00>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7f3eb6bfd490>)
+[2.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[2.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[2.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[2.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[2.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[2.067s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[2.067s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/lin/drone'
+[2.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[2.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[2.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[2.067s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[2.068s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[2.068s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[2.068s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[2.068s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[2.068s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[2.078s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[2.078s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[2.078s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[2.078s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[2.078s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[2.079s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[2.079s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[2.079s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[2.079s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[2.079s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[2.079s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[2.079s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[2.079s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[2.079s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[2.079s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) by extensions ['ignore', 'ignore_ament_install']
+[2.080s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) by extension 'ignore'
+[2.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) ignored
+[2.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/cpppkg) by extensions ['ignore', 'ignore_ament_install']
+[2.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/cpppkg) by extension 'ignore'
+[2.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/cpppkg) by extension 'ignore_ament_install'
+[2.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/cpppkg) by extensions ['colcon_pkg']
+[2.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/cpppkg) by extension 'colcon_pkg'
+[2.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/cpppkg) by extensions ['colcon_meta']
+[2.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/cpppkg) by extension 'colcon_meta'
+[2.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/cpppkg) by extensions ['ros']
+[2.081s] Level 1:colcon.colcon_core.package_identification:_identify(src/cpppkg) by extension 'ros'
+[2.083s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cpppkg' with type 'ros.ament_cmake' and name 'cpppkg'
+[2.083s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) by extensions ['ignore', 'ignore_ament_install']
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) by extension 'ignore'
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) ignored
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) by extensions ['ignore', 'ignore_ament_install']
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) by extension 'ignore'
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) ignored
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/pythonpkg) by extensions ['ignore', 'ignore_ament_install']
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/pythonpkg) by extension 'ignore'
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/pythonpkg) by extension 'ignore_ament_install'
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/pythonpkg) by extensions ['colcon_pkg']
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/pythonpkg) by extension 'colcon_pkg'
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/pythonpkg) by extensions ['colcon_meta']
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/pythonpkg) by extension 'colcon_meta'
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/pythonpkg) by extensions ['ros']
+[2.084s] Level 1:colcon.colcon_core.package_identification:_identify(src/pythonpkg) by extension 'ros'
+[2.085s] DEBUG:colcon.colcon_core.package_identification:Package 'src/pythonpkg' with type 'ros.ament_python' and name 'pythonpkg'
+[2.085s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[2.085s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[2.085s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[2.085s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[2.085s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[2.265s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[2.265s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[2.332s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/lin/drone/install
+[2.365s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /home/lin/ros/install
+[2.404s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /home/lin/ros/src/install
+[2.438s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/lin/drone/src/install
+[2.472s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 256 installed packages in /opt/ros/foxy
+[2.474s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[2.625s] Level 5:colcon.colcon_core.verb:set package 'cpppkg' build argument 'cmake_args' from command line to 'None'
+[2.625s] Level 5:colcon.colcon_core.verb:set package 'cpppkg' build argument 'cmake_target' from command line to 'None'
+[2.625s] Level 5:colcon.colcon_core.verb:set package 'cpppkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[2.625s] Level 5:colcon.colcon_core.verb:set package 'cpppkg' build argument 'cmake_clean_cache' from command line to 'False'
+[2.625s] Level 5:colcon.colcon_core.verb:set package 'cpppkg' build argument 'cmake_clean_first' from command line to 'False'
+[2.625s] Level 5:colcon.colcon_core.verb:set package 'cpppkg' build argument 'cmake_force_configure' from command line to 'False'
+[2.625s] Level 5:colcon.colcon_core.verb:set package 'cpppkg' build argument 'ament_cmake_args' from command line to 'None'
+[2.625s] Level 5:colcon.colcon_core.verb:set package 'cpppkg' build argument 'catkin_cmake_args' from command line to 'None'
+[2.625s] Level 5:colcon.colcon_core.verb:set package 'cpppkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[2.625s] DEBUG:colcon.colcon_core.verb:Building package 'cpppkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/lin/drone/build/cpppkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/lin/drone/install/cpppkg', 'merge_install': False, 'path': '/home/lin/drone/src/cpppkg', 'symlink_install': False, 'test_result_base': None}
+[2.658s] Level 5:colcon.colcon_core.verb:set package 'pythonpkg' build argument 'cmake_args' from command line to 'None'
+[2.658s] Level 5:colcon.colcon_core.verb:set package 'pythonpkg' build argument 'cmake_target' from command line to 'None'
+[2.658s] Level 5:colcon.colcon_core.verb:set package 'pythonpkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[2.658s] Level 5:colcon.colcon_core.verb:set package 'pythonpkg' build argument 'cmake_clean_cache' from command line to 'False'
+[2.658s] Level 5:colcon.colcon_core.verb:set package 'pythonpkg' build argument 'cmake_clean_first' from command line to 'False'
+[2.658s] Level 5:colcon.colcon_core.verb:set package 'pythonpkg' build argument 'cmake_force_configure' from command line to 'False'
+[2.658s] Level 5:colcon.colcon_core.verb:set package 'pythonpkg' build argument 'ament_cmake_args' from command line to 'None'
+[2.658s] Level 5:colcon.colcon_core.verb:set package 'pythonpkg' build argument 'catkin_cmake_args' from command line to 'None'
+[2.658s] Level 5:colcon.colcon_core.verb:set package 'pythonpkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[2.658s] DEBUG:colcon.colcon_core.verb:Building package 'pythonpkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/lin/drone/build/pythonpkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/lin/drone/install/pythonpkg', 'merge_install': False, 'path': '/home/lin/drone/src/pythonpkg', 'symlink_install': False, 'test_result_base': None}
+[2.690s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[2.724s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[2.724s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/lin/drone/src/cpppkg' with build type 'ament_cmake'
+[2.724s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/lin/drone/src/cpppkg'
+[2.761s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[2.761s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.761s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.014s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/lin/drone/src/pythonpkg' with build type 'ament_python'
+[3.014s] Level 1:colcon.colcon_core.shell:create_environment_hook('pythonpkg', 'ament_prefix_path')
+[3.067s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/lin/drone/install/pythonpkg/share/pythonpkg/hook/ament_prefix_path.ps1'
+[3.068s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/lin/drone/install/pythonpkg/share/pythonpkg/hook/ament_prefix_path.dsv'
+[3.069s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/lin/drone/install/pythonpkg/share/pythonpkg/hook/ament_prefix_path.sh'
+[3.126s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.126s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.358s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/lin/drone/build/cpppkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/lin/drone/src/install/pythonpkg:/home/lin/drone/install/pythonpkg:/home/lin/ros/install/pypkg:/home/lin/ros/src/install/pypkg:/opt/ros/foxy /usr/bin/cmake --build /home/lin/drone/build/cpppkg -- -j4 -l4
+[3.591s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/lin/drone/src/pythonpkg'
+[3.633s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.633s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[4.283s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/lin/drone/src/pythonpkg': PYTHONPATH=/home/lin/drone/build/pythonpkg/prefix_override:/home/lin/drone/install/pythonpkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/pythonpkg build --build-base /home/lin/drone/build/pythonpkg/build install --record /home/lin/drone/build/pythonpkg/install.log --install-scripts $base/lib/pythonpkg --single-version-externally-managed
+[4.599s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/lin/drone/src/pythonpkg' returned '0': PYTHONPATH=/home/lin/drone/build/pythonpkg/prefix_override:/home/lin/drone/install/pythonpkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/pythonpkg build --build-base /home/lin/drone/build/pythonpkg/build install --record /home/lin/drone/build/pythonpkg/install.log --install-scripts $base/lib/pythonpkg --single-version-externally-managed
+[4.644s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/pythonpkg' for CMake module files
+[4.644s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/pythonpkg' for CMake config files
+[4.645s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/pythonpkg/lib'
+[4.645s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/pythonpkg/bin'
+[4.645s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/pythonpkg/lib/pkgconfig/pythonpkg.pc'
+[4.646s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/pythonpkg/lib/python3.8/site-packages'
+[4.646s] Level 1:colcon.colcon_core.shell:create_environment_hook('pythonpkg', 'pythonpath')
+[4.682s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/lin/drone/install/pythonpkg/share/pythonpkg/hook/pythonpath.ps1'
+[4.683s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/lin/drone/install/pythonpkg/share/pythonpkg/hook/pythonpath.dsv'
+[4.683s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/lin/drone/install/pythonpkg/share/pythonpkg/hook/pythonpath.sh'
+[4.684s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/pythonpkg/bin'
+[4.684s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pythonpkg)
+[4.726s] INFO:colcon.colcon_core.shell:Creating package script '/home/lin/drone/install/pythonpkg/share/pythonpkg/package.ps1'
+[4.727s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/lin/drone/install/pythonpkg/share/pythonpkg/package.dsv'
+[4.728s] INFO:colcon.colcon_core.shell:Creating package script '/home/lin/drone/install/pythonpkg/share/pythonpkg/package.sh'
+[4.729s] INFO:colcon.colcon_core.shell:Creating package script '/home/lin/drone/install/pythonpkg/share/pythonpkg/package.bash'
+[4.730s] INFO:colcon.colcon_core.shell:Creating package script '/home/lin/drone/install/pythonpkg/share/pythonpkg/package.zsh'
+[4.730s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/lin/drone/install/pythonpkg/share/colcon-core/packages/pythonpkg)
+[7.740s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/lin/drone/build/cpppkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/lin/drone/src/install/pythonpkg:/home/lin/drone/install/pythonpkg:/home/lin/ros/install/pypkg:/home/lin/ros/src/install/pypkg:/opt/ros/foxy /usr/bin/cmake --build /home/lin/drone/build/cpppkg -- -j4 -l4
+[7.781s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/lin/drone/build/cpppkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/lin/drone/src/install/pythonpkg:/home/lin/drone/install/pythonpkg:/home/lin/ros/install/pypkg:/home/lin/ros/src/install/pypkg:/opt/ros/foxy /usr/bin/cmake --install /home/lin/drone/build/cpppkg
+[7.800s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cpppkg)
+[7.801s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/lin/drone/build/cpppkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/lin/drone/src/install/pythonpkg:/home/lin/drone/install/pythonpkg:/home/lin/ros/install/pypkg:/home/lin/ros/src/install/pypkg:/opt/ros/foxy /usr/bin/cmake --install /home/lin/drone/build/cpppkg
+[7.841s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg' for CMake module files
+[7.841s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg' for CMake config files
+[7.841s] Level 1:colcon.colcon_core.shell:create_environment_hook('cpppkg', 'cmake_prefix_path')
+[7.877s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/lin/drone/install/cpppkg/share/cpppkg/hook/cmake_prefix_path.ps1'
+[7.878s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/lin/drone/install/cpppkg/share/cpppkg/hook/cmake_prefix_path.dsv'
+[7.878s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/lin/drone/install/cpppkg/share/cpppkg/hook/cmake_prefix_path.sh'
+[7.879s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg/lib'
+[7.879s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg/bin'
+[7.879s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg/lib/pkgconfig/cpppkg.pc'
+[7.880s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg/lib/python3.8/site-packages'
+[7.880s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg/bin'
+[7.915s] INFO:colcon.colcon_core.shell:Creating package script '/home/lin/drone/install/cpppkg/share/cpppkg/package.ps1'
+[7.916s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/lin/drone/install/cpppkg/share/cpppkg/package.dsv'
+[7.916s] INFO:colcon.colcon_core.shell:Creating package script '/home/lin/drone/install/cpppkg/share/cpppkg/package.sh'
+[7.917s] INFO:colcon.colcon_core.shell:Creating package script '/home/lin/drone/install/cpppkg/share/cpppkg/package.bash'
+[7.917s] INFO:colcon.colcon_core.shell:Creating package script '/home/lin/drone/install/cpppkg/share/cpppkg/package.zsh'
+[7.918s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/lin/drone/install/cpppkg/share/colcon-core/packages/cpppkg)
+[7.995s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cpppkg)
+[8.042s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg' for CMake module files
+[8.042s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg' for CMake config files
+[8.043s] Level 1:colcon.colcon_core.shell:create_environment_hook('cpppkg', 'cmake_prefix_path')
+[8.084s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/lin/drone/install/cpppkg/share/cpppkg/hook/cmake_prefix_path.ps1'
+[8.085s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/lin/drone/install/cpppkg/share/cpppkg/hook/cmake_prefix_path.dsv'
+[8.085s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/lin/drone/install/cpppkg/share/cpppkg/hook/cmake_prefix_path.sh'
+[8.086s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg/lib'
+[8.086s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg/bin'
+[8.086s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg/lib/pkgconfig/cpppkg.pc'
+[8.087s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg/lib/python3.8/site-packages'
+[8.087s] Level 1:colcon.colcon_core.environment:checking '/home/lin/drone/install/cpppkg/bin'
+[8.135s] INFO:colcon.colcon_core.shell:Creating package script '/home/lin/drone/install/cpppkg/share/cpppkg/package.ps1'
+[8.136s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/lin/drone/install/cpppkg/share/cpppkg/package.dsv'
+[8.136s] INFO:colcon.colcon_core.shell:Creating package script '/home/lin/drone/install/cpppkg/share/cpppkg/package.sh'
+[8.137s] INFO:colcon.colcon_core.shell:Creating package script '/home/lin/drone/install/cpppkg/share/cpppkg/package.bash'
+[8.137s] INFO:colcon.colcon_core.shell:Creating package script '/home/lin/drone/install/cpppkg/share/cpppkg/package.zsh'
+[8.138s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/lin/drone/install/cpppkg/share/colcon-core/packages/cpppkg)
+[8.138s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[8.139s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[8.139s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[8.139s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[8.227s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[8.228s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[8.228s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[8.244s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[8.309s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/lin/drone/install/local_setup.ps1'
+[8.312s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/lin/drone/install/_local_setup_util_ps1.py'
+[8.313s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/lin/drone/install/setup.ps1'
+[8.362s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/lin/drone/install/local_setup.sh'
+[8.367s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/lin/drone/install/_local_setup_util_sh.py'
+[8.369s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/lin/drone/install/setup.sh'
+[8.414s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/lin/drone/install/local_setup.bash'
+[8.414s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/lin/drone/install/setup.bash'
+[8.483s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/lin/drone/install/local_setup.zsh'
+[8.484s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/lin/drone/install/setup.zsh'

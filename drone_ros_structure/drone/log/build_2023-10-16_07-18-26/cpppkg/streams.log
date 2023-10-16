@@ -1,0 +1,49 @@
+[0.632s] Invoking command in '/home/lin/drone/build/cpppkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/lin/drone/src/install/pythonpkg:/home/lin/drone/install/pythonpkg:/home/lin/ros/install/pypkg:/home/lin/ros/src/install/pypkg:/opt/ros/foxy /usr/bin/cmake --build /home/lin/drone/build/cpppkg -- -j4 -l4
+[0.663s] -- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.698s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.896s] -- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.928s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.931s] -- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[1.049s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.103s] -- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[1.104s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.250s] -- Found example_interfaces: 0.9.1 (/opt/ros/foxy/share/example_interfaces/cmake)
+[1.365s] -- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[1.443s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.444s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.444s] -- Configured cppcheck include dirs: 
+[1.444s] -- Configured cppcheck exclude dirs and/or files: 
+[1.445s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[1.445s] -- Configured cpplint exclude dirs and/or files: 
+[1.446s] -- Added test 'lint_cmake' to check CMake code style
+[1.447s] -- Added test 'uncrustify' to check C / C++ code style
+[1.447s] -- Configured uncrustify additional arguments: 
+[1.447s] -- Added test 'xmllint' to check XML markup files
+[1.450s] -- Configuring done
+[1.478s] -- Generating done
+[1.482s] -- Build files have been written to: /home/lin/drone/build/cpppkg
+[1.517s] [35m[1mScanning dependencies of target drone_imu[0m
+[1.559s] [ 50%] [32mBuilding CXX object CMakeFiles/drone_imu.dir/src/drone_imu.cpp.o[0m
+[4.747s] [100%] [32m[1mLinking CXX executable drone_imu[0m
+[4.997s] [100%] Built target drone_imu
+[5.013s] Invoked command in '/home/lin/drone/build/cpppkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/lin/drone/src/install/pythonpkg:/home/lin/drone/install/pythonpkg:/home/lin/ros/install/pypkg:/home/lin/ros/src/install/pypkg:/opt/ros/foxy /usr/bin/cmake --build /home/lin/drone/build/cpppkg -- -j4 -l4
+[5.056s] Invoking command in '/home/lin/drone/build/cpppkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/lin/drone/src/install/pythonpkg:/home/lin/drone/install/pythonpkg:/home/lin/ros/install/pypkg:/home/lin/ros/src/install/pypkg:/opt/ros/foxy /usr/bin/cmake --install /home/lin/drone/build/cpppkg
+[5.069s] -- Install configuration: ""
+[5.070s] -- Installing: /home/lin/drone/install/cpppkg/lib/cpppkg/drone_imu
+[5.072s] -- Set runtime path of "/home/lin/drone/install/cpppkg/lib/cpppkg/drone_imu" to ""
+[5.072s] -- Installing: /home/lin/drone/install/cpppkg/share/ament_index/resource_index/package_run_dependencies/cpppkg
+[5.072s] -- Installing: /home/lin/drone/install/cpppkg/share/ament_index/resource_index/parent_prefix_path/cpppkg
+[5.072s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/environment/ament_prefix_path.sh
+[5.073s] -- Installing: /home/lin/drone/install/cpppkg/share/cpppkg/environment/ament_prefix_path.dsv
+[5.073s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/environment/path.sh
+[5.073s] -- Installing: /home/lin/drone/install/cpppkg/share/cpppkg/environment/path.dsv
+[5.073s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/local_setup.bash
+[5.073s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/local_setup.sh
+[5.073s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/local_setup.zsh
+[5.073s] -- Installing: /home/lin/drone/install/cpppkg/share/cpppkg/local_setup.dsv
+[5.074s] -- Installing: /home/lin/drone/install/cpppkg/share/cpppkg/package.dsv
+[5.074s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/ament_index/resource_index/packages/cpppkg
+[5.074s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/cmake/cpppkgConfig.cmake
+[5.074s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/cmake/cpppkgConfig-version.cmake
+[5.074s] -- Installing: /home/lin/drone/install/cpppkg/share/cpppkg/package.xml
+[5.076s] Invoked command in '/home/lin/drone/build/cpppkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/lin/drone/src/install/pythonpkg:/home/lin/drone/install/pythonpkg:/home/lin/ros/install/pypkg:/home/lin/ros/src/install/pypkg:/opt/ros/foxy /usr/bin/cmake --install /home/lin/drone/build/cpppkg

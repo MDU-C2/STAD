@@ -1,0 +1,4 @@
+[console_scripts]
+camera_node = pythonpkg.camera_node:main
+flight_controller_node = pythonpkg.flight_controller_node:main
+

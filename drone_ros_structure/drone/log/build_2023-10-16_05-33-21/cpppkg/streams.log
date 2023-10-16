@@ -1,0 +1,20 @@
+[0.492s] Invoking command in '/home/lin/drone/build/cpppkg': CMAKE_PREFIX_PATH=/home/lin/ros/src/install/pypkg:/home/lin/ros/install/pypkg:/opt/ros/foxy /usr/bin/cmake --build /home/lin/drone/build/cpppkg -- -j4 -l4
+[0.901s] Invoked command in '/home/lin/drone/build/cpppkg' returned '0': CMAKE_PREFIX_PATH=/home/lin/ros/src/install/pypkg:/home/lin/ros/install/pypkg:/opt/ros/foxy /usr/bin/cmake --build /home/lin/drone/build/cpppkg -- -j4 -l4
+[0.936s] Invoking command in '/home/lin/drone/build/cpppkg': CMAKE_PREFIX_PATH=/home/lin/ros/src/install/pypkg:/home/lin/ros/install/pypkg:/opt/ros/foxy /usr/bin/cmake --install /home/lin/drone/build/cpppkg
+[0.946s] -- Install configuration: ""
+[0.947s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/ament_index/resource_index/package_run_dependencies/cpppkg
+[0.947s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/ament_index/resource_index/parent_prefix_path/cpppkg
+[0.947s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/environment/ament_prefix_path.sh
+[0.947s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/environment/ament_prefix_path.dsv
+[0.947s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/environment/path.sh
+[0.947s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/environment/path.dsv
+[0.948s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/local_setup.bash
+[0.948s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/local_setup.sh
+[0.948s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/local_setup.zsh
+[0.948s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/local_setup.dsv
+[0.948s] -- Installing: /home/lin/drone/install/cpppkg/share/cpppkg/package.dsv
+[0.948s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/ament_index/resource_index/packages/cpppkg
+[0.948s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/cmake/cpppkgConfig.cmake
+[0.948s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/cmake/cpppkgConfig-version.cmake
+[0.948s] -- Up-to-date: /home/lin/drone/install/cpppkg/share/cpppkg/package.xml
+[0.951s] Invoked command in '/home/lin/drone/build/cpppkg' returned '0': CMAKE_PREFIX_PATH=/home/lin/ros/src/install/pypkg:/home/lin/ros/install/pypkg:/opt/ros/foxy /usr/bin/cmake --install /home/lin/drone/build/cpppkg

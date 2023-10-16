@@ -1,0 +1,2 @@
+source;share/cpppkg/environment/ament_prefix_path.sh
+source;share/cpppkg/environment/path.sh

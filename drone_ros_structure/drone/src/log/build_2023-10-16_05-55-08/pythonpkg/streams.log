@@ -1,0 +1,26 @@
+[1.448s] Invoking command in '/home/lin/drone/src/pythonpkg': PYTHONPATH=/home/lin/drone/src/build/pythonpkg/prefix_override:/home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/pythonpkg build --build-base /home/lin/drone/src/build/pythonpkg/build install --record /home/lin/drone/src/build/pythonpkg/install.log --install-scripts $base/lib/pythonpkg --single-version-externally-managed
+[1.695s] running egg_info
+[1.696s] writing ../build/pythonpkg/pythonpkg.egg-info/PKG-INFO
+[1.697s] writing dependency_links to ../build/pythonpkg/pythonpkg.egg-info/dependency_links.txt
+[1.697s] writing entry points to ../build/pythonpkg/pythonpkg.egg-info/entry_points.txt
+[1.697s] writing requirements to ../build/pythonpkg/pythonpkg.egg-info/requires.txt
+[1.697s] writing top-level names to ../build/pythonpkg/pythonpkg.egg-info/top_level.txt
+[1.732s] reading manifest file '../build/pythonpkg/pythonpkg.egg-info/SOURCES.txt'
+[1.733s] writing manifest file '../build/pythonpkg/pythonpkg.egg-info/SOURCES.txt'
+[1.733s] running build
+[1.733s] running build_py
+[1.733s] copying pythonpkg/camera_node.py -> /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg
+[1.734s] running install
+[1.734s] running install_lib
+[1.735s] copying /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg/camera_node.py -> /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg
+[1.736s] byte-compiling /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg/camera_node.py to camera_node.cpython-38.pyc
+[1.738s] running install_data
+[1.739s] copying package.xml -> /home/lin/drone/src/install/pythonpkg/share/pythonpkg
+[1.739s] running install_egg_info
+[1.740s] removing '/home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg-0.0.0-py3.8.egg-info' (and everything under it)
+[1.741s] Copying ../build/pythonpkg/pythonpkg.egg-info to /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg-0.0.0-py3.8.egg-info
+[1.741s] running install_scripts
+[1.767s] Installing camera_node script to /home/lin/drone/src/install/pythonpkg/lib/pythonpkg
+[1.767s] Installing flight_controller_node script to /home/lin/drone/src/install/pythonpkg/lib/pythonpkg
+[1.768s] writing list of installed files to '/home/lin/drone/src/build/pythonpkg/install.log'
+[1.791s] Invoked command in '/home/lin/drone/src/pythonpkg' returned '0': PYTHONPATH=/home/lin/drone/src/build/pythonpkg/prefix_override:/home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/pythonpkg build --build-base /home/lin/drone/src/build/pythonpkg/build install --record /home/lin/drone/src/build/pythonpkg/install.log --install-scripts $base/lib/pythonpkg --single-version-externally-managed

@@ -1,0 +1,45 @@
+-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Found rclcpp: 2.4.3 (/opt/ros/foxy/share/rclcpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found example_interfaces: 0.9.1 (/opt/ros/foxy/share/example_interfaces/cmake)
+-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+-- Added test 'copyright' to check source files copyright and LICENSE
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: 
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'cpplint' to check C / C++ code against the Google style
+-- Configured cpplint exclude dirs and/or files: 
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/lin/drone/src/build/cpppkg
+[35m[1mScanning dependencies of target drone_imu[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/drone_imu.dir/src/drone_imu.cpp.o[0m
+[100%] [32m[1mLinking CXX executable drone_imu[0m
+[100%] Built target drone_imu
+-- Install configuration: ""
+-- Installing: /home/lin/drone/src/install/cpppkg/lib/cpppkg/drone_imu
+-- Set runtime path of "/home/lin/drone/src/install/cpppkg/lib/cpppkg/drone_imu" to ""
+-- Installing: /home/lin/drone/src/install/cpppkg/share/ament_index/resource_index/package_run_dependencies/cpppkg
+-- Installing: /home/lin/drone/src/install/cpppkg/share/ament_index/resource_index/parent_prefix_path/cpppkg
+-- Up-to-date: /home/lin/drone/src/install/cpppkg/share/cpppkg/environment/ament_prefix_path.sh
+-- Installing: /home/lin/drone/src/install/cpppkg/share/cpppkg/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/lin/drone/src/install/cpppkg/share/cpppkg/environment/path.sh
+-- Installing: /home/lin/drone/src/install/cpppkg/share/cpppkg/environment/path.dsv
+-- Up-to-date: /home/lin/drone/src/install/cpppkg/share/cpppkg/local_setup.bash
+-- Up-to-date: /home/lin/drone/src/install/cpppkg/share/cpppkg/local_setup.sh
+-- Up-to-date: /home/lin/drone/src/install/cpppkg/share/cpppkg/local_setup.zsh
+-- Installing: /home/lin/drone/src/install/cpppkg/share/cpppkg/local_setup.dsv
+-- Installing: /home/lin/drone/src/install/cpppkg/share/cpppkg/package.dsv
+-- Up-to-date: /home/lin/drone/src/install/cpppkg/share/ament_index/resource_index/packages/cpppkg
+-- Up-to-date: /home/lin/drone/src/install/cpppkg/share/cpppkg/cmake/cpppkgConfig.cmake
+-- Up-to-date: /home/lin/drone/src/install/cpppkg/share/cpppkg/cmake/cpppkgConfig-version.cmake
+-- Installing: /home/lin/drone/src/install/cpppkg/share/cpppkg/package.xml

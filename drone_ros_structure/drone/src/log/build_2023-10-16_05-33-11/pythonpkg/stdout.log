@@ -1,0 +1,45 @@
+running egg_info
+creating ../build/pythonpkg/pythonpkg.egg-info
+writing ../build/pythonpkg/pythonpkg.egg-info/PKG-INFO
+writing dependency_links to ../build/pythonpkg/pythonpkg.egg-info/dependency_links.txt
+writing entry points to ../build/pythonpkg/pythonpkg.egg-info/entry_points.txt
+writing requirements to ../build/pythonpkg/pythonpkg.egg-info/requires.txt
+writing top-level names to ../build/pythonpkg/pythonpkg.egg-info/top_level.txt
+writing manifest file '../build/pythonpkg/pythonpkg.egg-info/SOURCES.txt'
+reading manifest file '../build/pythonpkg/pythonpkg.egg-info/SOURCES.txt'
+writing manifest file '../build/pythonpkg/pythonpkg.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/lin/drone/src/build/pythonpkg/build
+creating /home/lin/drone/src/build/pythonpkg/build/lib
+creating /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg
+copying pythonpkg/__init__.py -> /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg
+copying pythonpkg/flight_controller_node.py -> /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg
+copying pythonpkg/camera_node.py -> /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg
+copying pythonpkg/husky_imu_node.py -> /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg
+copying pythonpkg/emergency_breake_node.py -> /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg
+running install
+running install_lib
+creating /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg
+copying /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg/__init__.py -> /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg
+copying /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg/flight_controller_node.py -> /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg
+copying /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg/camera_node.py -> /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg
+copying /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg/husky_imu_node.py -> /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg
+copying /home/lin/drone/src/build/pythonpkg/build/lib/pythonpkg/emergency_breake_node.py -> /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg
+byte-compiling /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg/__init__.py to __init__.cpython-38.pyc
+byte-compiling /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg/flight_controller_node.py to flight_controller_node.cpython-38.pyc
+byte-compiling /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg/camera_node.py to camera_node.cpython-38.pyc
+byte-compiling /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg/husky_imu_node.py to husky_imu_node.cpython-38.pyc
+byte-compiling /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg/emergency_breake_node.py to emergency_breake_node.cpython-38.pyc
+running install_data
+creating /home/lin/drone/src/install/pythonpkg/share/ament_index
+creating /home/lin/drone/src/install/pythonpkg/share/ament_index/resource_index
+creating /home/lin/drone/src/install/pythonpkg/share/ament_index/resource_index/packages
+copying resource/pythonpkg -> /home/lin/drone/src/install/pythonpkg/share/ament_index/resource_index/packages
+copying package.xml -> /home/lin/drone/src/install/pythonpkg/share/pythonpkg
+running install_egg_info
+Copying ../build/pythonpkg/pythonpkg.egg-info to /home/lin/drone/src/install/pythonpkg/lib/python3.8/site-packages/pythonpkg-0.0.0-py3.8.egg-info
+running install_scripts
+Installing camera_node script to /home/lin/drone/src/install/pythonpkg/lib/pythonpkg
+Installing flight_controller_node script to /home/lin/drone/src/install/pythonpkg/lib/pythonpkg
+writing list of installed files to '/home/lin/drone/src/build/pythonpkg/install.log'

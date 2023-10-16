@@ -1,0 +1,10 @@
+/home/lin/drone/build/cpppkg/CMakeFiles/install/strip.dir
+/home/lin/drone/build/cpppkg/CMakeFiles/install/local.dir
+/home/lin/drone/build/cpppkg/CMakeFiles/install.dir
+/home/lin/drone/build/cpppkg/CMakeFiles/list_install_components.dir
+/home/lin/drone/build/cpppkg/CMakeFiles/rebuild_cache.dir
+/home/lin/drone/build/cpppkg/CMakeFiles/edit_cache.dir
+/home/lin/drone/build/cpppkg/CMakeFiles/test.dir
+/home/lin/drone/build/cpppkg/CMakeFiles/cpppkg_uninstall.dir
+/home/lin/drone/build/cpppkg/CMakeFiles/drone_imu.dir
+/home/lin/drone/build/cpppkg/CMakeFiles/uninstall.dir
