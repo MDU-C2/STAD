@@ -30,7 +30,7 @@ cd ~/drone
 colcon build 
 
 #run nodes with the following command
-ros2 run pypkg camera_node
+ros2 run pythonpkg camera_node
 -------------------------------cpp ------------------------------
 touch drone_imu_node.cpp
 write code 
