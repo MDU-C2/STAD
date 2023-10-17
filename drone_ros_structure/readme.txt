@@ -21,7 +21,7 @@ touch flight_controller_node.py
 
 chmod +x camera_node.py
 chmod +x husky_imu_node.py
-chmod +x emergency_breake_node.py
+chmod +x emergency_brake_node.py
 chmod +x flight_controller_node.py
 
 write your code in these files.
