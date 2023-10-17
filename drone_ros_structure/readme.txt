@@ -16,7 +16,7 @@ cd ~/drone/src/pythonpkg/pythonpkg
 
 touch camera_node.py
 touch husky_imu_node.py
-touch emergency_breake_node.py
+touch emergency_brake_node.py
 touch flight_controller_node.py
 
 chmod +x camera_node.py
