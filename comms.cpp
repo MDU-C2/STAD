@@ -133,7 +133,85 @@ int run_bt_client(std::string remote_connection) {
     return 0;
 }
 
-// Function to parse an INI-style configuration file
+int run_eth_client(std::string remote_connection)
+{
+    int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+    
+    // Set up the server address, connect, and the rest of the client setup code...
+    
+    std::thread receiveThread(receive_eth_data, clientSocket);
+
+    while (true) {
+        const char* message = "Hello from client";
+        send(clientSocket, message, strlen(message), 0);
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
+
+    receiveThread.join();
+    close(clientSocket);
+
+    return 0;
+}
+
+int run_eth_server(std::string remote_connection)
+{
+    int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+    
+    // Rest of the server setup code (bind, listen, accept) remains the same...
+
+    std::cout << "Server is listening for connections..." << std::endl;
+
+    sockaddr_in clientAddr;
+    socklen_t clientAddrLen = sizeof(clientAddr);
+    int clientSocket = accept(serverSocket, (struct sockaddr*)&clientAddr, &clientAddrLen);
+
+    
+    std::thread receiveThread(receiveData, clientSocket);
+    while (true) {
+        const char* message = "Hello from client";
+        send(clientSocket, message, strlen(message), 0);
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
+
+    receiveThread.join();
+    close(clientSocket);
+    close(serverSocket);
+
+    return 0;
+}
+
+void send_eth_data(int clientSocket) {
+
+}
+
+// void send_eth_data(int client_socket) {
+//     while (true) {
+//         struct Data send_data = {}; // Send data to the receiver
+//         send_data.info = ping;
+//         send_data.imu_data_1 = 2;
+//         send_data.imu_data_2 = 2;
+//         //send_data.imu_data_3 = 5.2;
+//         send_data.imu_data_4 = 2.2;
+//         char buffer[sizeof(struct Data)];
+//         memcpy(buffer, &send_data, sizeof(struct Data));
+//         send(client_socket, buffer, strlen(buffer), 0);
+//         std::this_thread::sleep_for(std::chrono::seconds(2));
+//     }
+// }
+
+void receive_eth_data(int client_socket) {
+    char buffer[1024];
+    
+    while (true) {
+        memset(buffer, 0, sizeof(buffer));
+        int bytesRead = recv(client_socket, buffer, sizeof(buffer), 0);
+        if (bytesRead <= 0) {
+            break;
+        }
+        std::cout << "Received from server: " << buffer << std::endl;
+    }
+}
+
 std::map<std::string, std::string> parse_ini_file(const std::string &filename)
 {
     std::map<std::string, std::string> config;
@@ -160,4 +238,4 @@ std::map<std::string, std::string> parse_ini_file(const std::string &filename)
     }
 
     return config;
-}
+} 	

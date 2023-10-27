@@ -9,11 +9,11 @@ int main()
 
     if (device == "itx")
     {
-        run_bt_client(remote_connection);
+        run_bt_server();
     }
     else if (device == "drone")
-    {
-        run_bt_server();
+    {        
+        run_bt_client(remote_connection);
     }
     else
     {
