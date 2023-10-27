@@ -13,8 +13,10 @@ sudo apt-get install libbluetooth-dev
 ```bash
 g++ main.cpp comms.cpp -o communication -lbluetooth -lpthread
 ```
-
-
+On Ubuntu 16.04, build with following:
+```bash
+g++ -std=c++11 main.cpp comms.cpp -o px2 -lbluetooth -lpthread
+```
 
 ## Usage
 Uncomment the configuration file depending on what device the program will run on
