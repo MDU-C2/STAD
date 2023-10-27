@@ -6,6 +6,7 @@ This is the general communication protocol for the whole UGV/UAV system.
 ```bash
 git clone $repository_address
 sudo apt install bluez
+sudo apt-get install libbluetooth-dev
 ```
 
 ### Build the following on all devices
@@ -29,9 +30,12 @@ remote_connection=XX:XX:XX:XX:XX:XX
 
 # Use this one together with device itx
 # remote_connection=XX:XX:XX:XX:XX:XX
+
+# Use this one together with device px2
+#remote_connection=XXX.XXX.XXX.XXX
 ```
 Then run: 
 ```bash 
 ./communication.
 ```
-Preferrably set this up so the program starts when the device boots.
+Preferably set this up so the program starts when the device boots.
