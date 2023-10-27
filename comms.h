@@ -17,7 +17,7 @@
 #include <stdio.h>  
 #include <string.h>  
 
-#define PORT 8080  
+#define PORT 1337  
 
 enum Information : uint8_t {
     ping,
@@ -61,7 +61,7 @@ int run_eth_client(std::string remote_connection);
 /// @brief Ethernet communication for server device
 /// @param remote_connection 
 /// @return /
-int run_eth_server(std::string remote_connection);
+int run_eth_server();
 
 /// @brief Function to parse an INI-style configuration file
 /// @param filename 

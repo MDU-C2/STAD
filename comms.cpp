@@ -14,7 +14,7 @@ std::map<Location, std::string> locationMap{
     {drone, "drone"}};
 
 
-void receiveData(int client) 
+void receive_data(int client) 
 {
     char buf[1024];
     int bytes_read{};
@@ -32,6 +32,19 @@ void receiveData(int client)
             std::cout << "IMU data 4: " << rcvd_data.imu_data_4 << "\n";
         }
         memset(buf, 0, sizeof(buf));
+    }
+}
+
+void receive_eth_data(int client_socket) {
+    char buffer[1024];
+    
+    while (true) {
+        memset(buffer, 0, sizeof(buffer));
+        int bytesRead = recv(client_socket, buffer, sizeof(buffer), 0);
+        if (bytesRead <= 0) {
+            break;
+        }
+        std::cout << "Received data: " << buffer << std::endl;
     }
 }
 
@@ -53,7 +66,7 @@ int run_bt_server()
     socklen_t opt = sizeof(rem_addr);
     int client = accept(sock, (struct sockaddr*)&rem_addr, &opt);
 
-    std::thread receiveThread(receiveData, client);
+    std::thread receiveThread(receive_data, client);
 
     char buf[1024];
 
@@ -105,7 +118,7 @@ int run_bt_client(std::string remote_connection) {
         return 0;
     }
 
-    std::thread receiveThread(receiveData, sock);
+    std::thread receiveThread(receive_data, sock);
 
     char buf[1024];
 
@@ -135,82 +148,86 @@ int run_bt_client(std::string remote_connection) {
 
 int run_eth_client(std::string remote_connection)
 {
-    int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+    int client_socket = socket(AF_INET, SOCK_STREAM, 0);
     
-    // Set up the server address, connect, and the rest of the client setup code...
+    if (client_socket == -1) {
+        std::cerr << "Error creating socket" << std::endl;
+        return 1;
+    }
+
+    struct sockaddr_in serverAddr;
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_port = htons(PORT);
+    serverAddr.sin_addr.s_addr = inet_addr(remote_connection.c_str());
+
+    if (connect(client_socket, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) == -1) {
+        std::cerr << "Error connecting to the server" << std::endl;
+        close(client_socket);
+        return 1;
+    }
     
-    std::thread receiveThread(receive_eth_data, clientSocket);
+    std::thread receiveThread(receive_eth_data, client_socket);
 
     while (true) {
         const char* message = "Hello from client";
-        send(clientSocket, message, strlen(message), 0);
+        send(client_socket, message, strlen(message), 0);
         std::this_thread::sleep_for(std::chrono::seconds(2));
     }
 
     receiveThread.join();
-    close(clientSocket);
+    close(client_socket);
 
     return 0;
 }
 
-int run_eth_server(std::string remote_connection)
+int run_eth_server()
 {
-    int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+    int server_socket = socket(AF_INET, SOCK_STREAM, 0);
     
     // Rest of the server setup code (bind, listen, accept) remains the same...
+    if (server_socket == -1) {
+        std::cerr << "Error creating socket" << std::endl;
+        return 1;
+    }
 
+    struct sockaddr_in serverAddr;
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_port = htons(PORT);
+    serverAddr.sin_addr.s_addr = INADDR_ANY; // Listen on all available interfaces
+
+    if (bind(server_socket, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) == -1) {
+        std::cerr << "Error binding to port" << std::endl;
+        close(server_socket);
+        return 1;
+    }
+
+    if (listen(server_socket, 5) == -1) {
+        std::cerr << "Error listening on the socket" << std::endl;
+        close(server_socket);
+        return 1;
+    }
     std::cout << "Server is listening for connections..." << std::endl;
 
     sockaddr_in clientAddr;
     socklen_t clientAddrLen = sizeof(clientAddr);
-    int clientSocket = accept(serverSocket, (struct sockaddr*)&clientAddr, &clientAddrLen);
+    int client = accept(server_socket, (struct sockaddr*)&clientAddr, &clientAddrLen);
 
     
-    std::thread receiveThread(receiveData, clientSocket);
+    std::thread receiveThread(receive_eth_data, client);
     while (true) {
         const char* message = "Hello from client";
-        send(clientSocket, message, strlen(message), 0);
+        send(client, message, strlen(message), 0);
         std::this_thread::sleep_for(std::chrono::seconds(2));
     }
 
     receiveThread.join();
-    close(clientSocket);
-    close(serverSocket);
+    close(client);
+    close(server_socket);
 
     return 0;
 }
 
-void send_eth_data(int clientSocket) {
 
-}
-
-// void send_eth_data(int client_socket) {
-//     while (true) {
-//         struct Data send_data = {}; // Send data to the receiver
-//         send_data.info = ping;
-//         send_data.imu_data_1 = 2;
-//         send_data.imu_data_2 = 2;
-//         //send_data.imu_data_3 = 5.2;
-//         send_data.imu_data_4 = 2.2;
-//         char buffer[sizeof(struct Data)];
-//         memcpy(buffer, &send_data, sizeof(struct Data));
-//         send(client_socket, buffer, strlen(buffer), 0);
-//         std::this_thread::sleep_for(std::chrono::seconds(2));
-//     }
-// }
-
-void receive_eth_data(int client_socket) {
-    char buffer[1024];
-    
-    while (true) {
-        memset(buffer, 0, sizeof(buffer));
-        int bytesRead = recv(client_socket, buffer, sizeof(buffer), 0);
-        if (bytesRead <= 0) {
-            break;
-        }
-        std::cout << "Received from server: " << buffer << std::endl;
-    }
-}
 
 std::map<std::string, std::string> parse_ini_file(const std::string &filename)
 {
