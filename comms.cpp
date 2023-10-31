@@ -14,6 +14,61 @@ std::map<Location, std::string> locationMap{
     {drone, "drone"}};
 
 
+void message_handler(Data rcvd_data)
+{
+    if (device == "itx")
+    {
+        if (message_queue.size() > 100) //todo: we should change the size 
+        { 
+            struct Data send_data = {}; 
+            send_data.info = land;
+            send_data.imu_data_1 = 0;
+            send_data.imu_data_2 = 0;            
+            send_data.imu_data_4 = 0;            
+            char buffer[sizeof(struct Data)];
+            memcpy(buffer, &send_data, sizeof(struct Data));
+            //todo: protect sending data with mutex
+            send(bt_server_socket, buffer, sizeof(struct Data), 0);            
+        }
+
+        long long message_id = rcvd_data.id;
+        while (!message_queue.empty()) {
+            long long frontMessage = message_queue.front();
+            if (frontMessage == message_id) {
+                message_queue.pop();  
+                break; 
+            } else {
+                message_queue.pop();  
+            }
+        }
+    }
+    else if (device == "drone")
+    {
+        switch (rcvd_data.info)
+        {
+        case imu:
+        //send ACk with id 
+        //we should define a function as below for sending anything
+        // send_message(Data message)
+        imu_flag = true;            
+        break;
+        case start:
+            //elon function
+        break;            
+        case land:
+            //elon function
+        break;          
+        default:
+            std::cout << "Invalid Information.\n";
+            break;
+        }         
+    }
+    else
+    {
+        std::cout << "Invalid device... exiting.\n";
+    }
+}
+
 void receive_data(int client) 
 {
     char buf[1024];
@@ -27,11 +82,34 @@ void receive_data(int client)
             struct Data rcvd_data;
             bytes_read = read(client, buf, sizeof(buf));
             memcpy(&rcvd_data, buf, sizeof(struct Data));
-            std::cout << "Info: " << informationMap[rcvd_data.info] << "\n";
-            std::cout << "IMU data 1: " << rcvd_data.imu_data_1 << "\n";
-            std::cout << "IMU data 4: " << rcvd_data.imu_data_4 << "\n";
+            message_handler(rcvd_data);
+            // std::cout << "Info: " << informationMap[rcvd_data.info] << "\n";
+            // std::cout << "IMU data 1: " << rcvd_data.imu_data_1 << "\n";
+            // std::cout << "IMU data 4: " << rcvd_data.imu_data_4 << "\n";
         }
         memset(buf, 0, sizeof(buf));
+    }
+}
+
+void check_connection
+{
+    auto start = std::chrono::high_resolution_clock::now();
+    while (true)
+    {
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+        if (duration.count() >= EMERGENCY_LANDING_THRESHOLD_MS) 
+        {
+            std::cout << "Emergency land" << '\n';
+            //call Elons emergency land function
+        }
+        if (imu_flag == true) //reset counter
+        {
+            imu_flag = false;
+            start = std::chrono::high_resolution_clock::now();
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
 
@@ -43,6 +121,9 @@ int run_bt_server()
     bdaddr_t bdaddr = {0, 0, 0, 0, 0, 0}; // Initialize a bdaddr_t variable
     loc_addr.rc_bdaddr = bdaddr;
     loc_addr.rc_channel = 1;  // RFCOMM channel to use (e.g., 1).
+    
+    long long message_id = 0;
+    
 
     bind(sock, (struct sockaddr*)&loc_addr, sizeof(loc_addr));
     listen(sock, 1);  // Allow one connection at a time.
@@ -55,10 +136,12 @@ int run_bt_server()
     std::cout << "BT connection accepted\n";
 
     std::thread receiveThread(receive_data, client);
-
+    bt_server_socket = client;
     while (true) 
-    {
+    {   
+        message_id+=1;
         struct Data send_data = {}; // Send data to the receiver
+        send_data.id = message_id;
         send_data.info = ping;
         send_data.imu_data_1 = 1;
         send_data.imu_data_2 = 1;
@@ -68,6 +151,7 @@ int run_bt_server()
         char buffer[sizeof(struct Data)];
         memcpy(buffer, &send_data, sizeof(struct Data));
         send(client, buffer, sizeof(struct Data), 0);
+        message_queue.push(message_id);
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
 
@@ -105,7 +189,8 @@ int run_bt_client(std::string remote_connection)
     }
 
     std::thread receiveThread(receive_data, sock);
-
+    std::thread connectionCheckerThread(check_connection);
+    bt_client_socket = sock;
     while (true) 
     {   
         struct Data send_data = {}; // Send data to the receiver
@@ -122,6 +207,7 @@ int run_bt_client(std::string remote_connection)
     }
 
     receiveThread.join();
+    connectionCheckerThread.join();
     close(sock);
 
     return 0;
@@ -146,7 +232,7 @@ int run_eth_server()
     std::cout << "Ethernet connection accepted\n";
     
     std::thread receiveThread(receive_data, client);
-    
+    eth_server_socket = client;
     while (true) 
     {
         struct Data send_data{}; // Send data to the receiver
@@ -193,7 +279,7 @@ int run_eth_client(std::string remote_connection)
         close(sock);
         return 0;
     }
-    
+    eth_client_socket = sock;
     std::thread receiveThread(receive_data, sock);    
                 
     while (true) 

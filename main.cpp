@@ -3,8 +3,10 @@
 
 int main() 
 {
-    std::map<std::string, std::string> config_data = parse_ini_file(CONFIG);
-    std::string device = config_data["device"];
+    imu_flag = false;  
+    config_data = parse_ini_file(CONFIG);
+    device = config_data["device"];    
+
     std::string remote_connection = config_data["remote_connection"];
 
     if (device == "itx")
@@ -26,4 +28,4 @@ int main()
     }
     
     return 0;
-}
+}cd

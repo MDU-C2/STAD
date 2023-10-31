@@ -16,8 +16,20 @@
 #include <arpa/inet.h>  
 #include <stdio.h>  
 #include <string.h>  
+#include <queue>
 
 #define PORT 1337  
+#define EMERGENCY_LANDING_THRESHOLD_MS 1000
+
+std::queue<long long> message_queue;
+int eth_client_socket;
+int eth_server_socket;
+int bt_client_socket;
+int bt_server_socket;
+bool imu_flag;
+
+std::map<std::string, std::string> config_data;
+std::string device;
 
 enum Information : uint8_t {
     ping,
@@ -34,7 +46,8 @@ enum Location : uint8_t {
 };
 
 struct Data {
-    Information info;  
+    Information info;
+    long long   id;  
     Location    src;
     Location    dest;
     int         imu_data_1;
