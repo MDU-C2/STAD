@@ -1,6 +1,21 @@
 # Created by https://www.toptal.com/developers/gitignore/api/ros,ros2,python,c++,c
 # Edit at https://www.toptal.com/developers/gitignore?templates=ros,ros2,python,c++,c
 
+### VS CODE ###
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
 ### C ###
 # Prerequisites
 *.d
@@ -313,5 +328,6 @@ log/
 # Colcon custom files
 COLCON_IGNORE
 AMENT_IGNORE
+
 
 # End of https://www.toptal.com/developers/gitignore/api/ros,ros2,python,c++,c
