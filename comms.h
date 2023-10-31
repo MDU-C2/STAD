@@ -16,27 +16,39 @@
 #include <arpa/inet.h>  
 #include <stdio.h>  
 #include <string.h>  
+#include <queue>
+#include <mutex>
 
 #define PORT 1337  
+#define EMERGENCY_LANDING_THRESHOLD_MS 1000
+#define HELLO_RATE_MS 50
+#define QUEUE_SIZE EMERGENCY_LANDING_THRESHOLD_MS/HELLO_RATE_MS * 1.2 
+//original values 1000/50*1.2 will make a queue size of 24
 
-enum Information : uint8_t {
-    ping,
+std::mutex send_mutex;
+std::mutex imu_flag_mutex;
+
+std::queue<long long> message_queue;
+int eth_client_socket;
+int eth_server_socket;
+int bt_client_socket;
+int bt_server_socket;
+bool imu_flag;
+
+std::map<std::string, std::string> config_data;
+std::string device;
+
+enum Information : uint8_t {    
     imu,
-    start,
-    stop,
-    land
-};
-
-enum Location : uint8_t {
-    px2,
-    itx,
-    drone
+    start,    
+    land,
+    ack    
+    //stop,
 };
 
 struct Data {
-    Information info;  
-    Location    src;
-    Location    dest;
+    long long   id;
+    Information info;          
     int         imu_data_1;
     int         imu_data_2;
     float       imu_data_3;
@@ -49,7 +61,7 @@ struct Data {
 int run_bt_client(std::string remote_connection);
 
 /// @brief Bluetooth communication for server device
-/// @param remote_connection 
+/// @param remote_connection
 /// @return ?????????
 int run_bt_server();
 
