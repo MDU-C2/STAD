@@ -17,9 +17,14 @@
 #include <stdio.h>  
 #include <string.h>  
 #include <queue>
+#include <mutex>
 
 #define PORT 1337  
 #define EMERGENCY_LANDING_THRESHOLD_MS 1000
+std::mutex send_mutex_drone_to_itx;
+std::mutex send_mutex_itx_to_drone;
+std::mutex send_mutex_itx_to_px2;
+std::mutex send_mutex_px2_to_itx;
 
 std::queue<long long> message_queue;
 int eth_client_socket;

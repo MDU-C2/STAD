@@ -27,8 +27,9 @@ void message_handler(Data rcvd_data)
             send_data.imu_data_4 = 0;            
             char buffer[sizeof(struct Data)];
             memcpy(buffer, &send_data, sizeof(struct Data));
-            //todo: protect sending data with mutex
-            send(bt_server_socket, buffer, sizeof(struct Data), 0);            
+            std::unique_lock<std::mutex> lock(send_mutex_itx_to_drone);
+            send(bt_server_socket, buffer, sizeof(struct Data), 0);
+            lock.unlock();            
         }
 
         long long message_id = rcvd_data.id;
@@ -150,7 +151,9 @@ int run_bt_server()
         // Serialize the struct by copying its memory representation into a buffer
         char buffer[sizeof(struct Data)];
         memcpy(buffer, &send_data, sizeof(struct Data));
+        std::unique_lock<std::mutex> lock(send_mutex_itx_to_drone);
         send(client, buffer, sizeof(struct Data), 0);
+        lock.unlock();
         message_queue.push(message_id);
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
@@ -202,7 +205,9 @@ int run_bt_client(std::string remote_connection)
         // Serialize the struct by copying its memory representation into a buffer
         char buffer[sizeof(struct Data)];
         memcpy(buffer, &send_data, sizeof(struct Data));
+        std::unique_lock<std::mutex> lock(send_mutex_drone_to_itx);
         send(sock, buffer, sizeof(struct Data), 0);
+        lock.unlock();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
     }
 
@@ -244,7 +249,9 @@ int run_eth_server()
         // Serialize the struct by copying its memory representation into a buffer
         char buffer[sizeof(struct Data)];
         memcpy(buffer, &send_data, sizeof(struct Data));
+        std::unique_lock<std::mutex> lock(send_mutex_itx_to_px2);
         send(client, buffer, sizeof(struct Data), 0);
+        lock.unlock();
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
 
@@ -293,7 +300,9 @@ int run_eth_client(std::string remote_connection)
         // Serialize the struct by copying its memory representation into a buffer
         char buffer[sizeof(struct Data)];
         memcpy(buffer, &send_data, sizeof(struct Data));
+        std::unique_lock<std::mutex> lock(send_mutex_px2_to_itx);
         send(sock, buffer, sizeof(struct Data), 0);
+        lock.unlock();
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
     }
 
