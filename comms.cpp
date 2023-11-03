@@ -9,10 +9,17 @@ std::map<Information, std::string> informationMap{
 void send_bt_message(Data send_data)
 {              
     int socket = (device == "itx") ? bt_server_socket : bt_client_socket;
-
+    std::cout << "Device name is ITX?  " << (device == "itx") << "\n";
+    std::cout << "socket:  " << socket << "\n";
+    std::cout << "sned_data.id:   " << send_data.id << "\n";
+    std::cout << "sned_data.info:   " << send_data.info << "\n";
+    std::cout << "sned_data.yaw:   " << send_data.imu_data.yaw << "\n";
+    std::cout << "sned_data.pitch:   " << send_data.imu_data.pitch << "\n";
+    std::cout << "sned_data.roll:   " << send_data.imu_data.roll << "\n";
     char buffer[sizeof(struct Data)];
     memcpy(buffer, &send_data, sizeof(struct Data));
     std::unique_lock<std::mutex> lock(send_mutex);
+    std::cout << "Data has been sent from " << device << "\n";
     send(socket, buffer, sizeof(struct Data), 0);
     lock.unlock();
 }
@@ -24,14 +31,22 @@ Data form_ack_data(long long id){
     return send_data;
 }
 
-Data form_imu_data(long long message_id, int imu1, int imu2, float imu3, float imu4){
+Data form_imu_data(long long message_id, EzAsyncData* ez)
+{
+    vec3f yaw_pitch_roll;
+    CompositeData cd = ez->getNextData();
+
+    if (!cd.hasYawPitchRoll())
+        std::cout << "YPR Unavailable." << std::endl;
+    else
+            yaw_pitch_roll = cd.yawPitchRoll();
+    
     struct Data send_data = {}; 
     send_data.id = message_id;
     send_data.info = imu;
-    send_data.imu_data_1 = imu1;
-    send_data.imu_data_2 = imu2;
-    send_data.imu_data_3 = imu3;
-    send_data.imu_data_4 = imu4;
+    send_data.imu_data.yaw = yaw_pitch_roll.x;
+    send_data.imu_data.pitch = yaw_pitch_roll.y;
+    send_data.imu_data.roll = yaw_pitch_roll.z;
     return send_data;
 }
 Data form_start_data(){
@@ -49,12 +64,14 @@ void itx_bt_message_handler(Data rcvd_data){
     { 
         send_bt_message(form_land_data());          
     }
-
+    std::cout << "received ack for the message id: " << rcvd_data.id << "\n";
     while (!message_queue.empty()) {        
         if (message_queue.front() == rcvd_data.id) {
+            std::cout << "id was equal pop" << "\n";
             message_queue.pop();  
             break; 
         } else {
+            std::cout << "pop to find the message."  << "\n";
             message_queue.pop();  
         }
     }
@@ -62,7 +79,9 @@ void itx_bt_message_handler(Data rcvd_data){
 void drone_message_handler(Data rcvd_data){
     
     if (rcvd_data.info == imu) {
+        std::cout << "Message received in client with id: " << rcvd_data.id << "\n";
         send_bt_message(form_ack_data(rcvd_data.id));
+        std::cout << "Ack for message with this ID sent: " << rcvd_data.id << "\n";
         std::unique_lock<std::mutex> lock(imu_flag_mutex);
         imu_flag = true;
         lock.unlock();
@@ -81,9 +100,11 @@ void message_handler(Data rcvd_data)
     // std::cout << "Info: " << informationMap[rcvd_data.info] << "\n";
     if (device == "itx")
     {
+        std::cout << "Message Handler in itx.\n";
         itx_bt_message_handler(rcvd_data);
     }else if (device == "drone")
     {
+        std::cout << "Message Handler in drone.\n";
         drone_message_handler(rcvd_data);        
     }else
     {
@@ -102,7 +123,9 @@ void receive_data(int client)
         if (bytes_read > 0)
         {
             struct Data rcvd_data;
-            bytes_read = read(client, buf, sizeof(buf));
+            ////////////////remove to test/////////////////
+            //bytes_read = read(client, buf, sizeof(buf));
+            std::cout << "Message received." << "\n";
             memcpy(&rcvd_data, buf, sizeof(struct Data));            
             message_handler(rcvd_data);             
         }
@@ -119,8 +142,11 @@ void check_connection()
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
         if (duration.count() >= EMERGENCY_LANDING_THRESHOLD_MS) 
         {
+            std::cout << "EMERGENCY_LANDING_THRESHOLD_MS: " << EMERGENCY_LANDING_THRESHOLD_MS << "\n";
+            std::cout << "duration.count(): " << duration.count() << "\n";            
             std::cout << "Emergency land because connection timeout" << '\n';
             //call Elons emergency land function
+            return;
         }
         std::unique_lock<std::mutex> lock(imu_flag_mutex);
         if (imu_flag == true) //reset counter
@@ -141,12 +167,16 @@ int run_bt_server()
     loc_addr.rc_family = AF_BLUETOOTH;
     bdaddr_t bdaddr = {0, 0, 0, 0, 0, 0}; // Initialize a bdaddr_t variable
     loc_addr.rc_bdaddr = bdaddr;
-    loc_addr.rc_channel = 1;  // RFCOMM channel to use (e.g., 1).
+    loc_addr.rc_channel = 3;  // RFCOMM channel to use (e.g., 1).
     
+    const std::string SensorPort = "/dev/ttyUSB0";                  // Linux format for virtual (USB) serial port.
+    const uint32_t SensorBaudrate = 115200;
+    EzAsyncData* ez = EzAsyncData::connect(SensorPort, SensorBaudrate);
+
     long long message_id = 0;
     
     bind(sock, (struct sockaddr*)&loc_addr, sizeof(loc_addr));
-    listen(sock, 1);  // Allow one connection at a time.
+    listen(sock, 3);  // Allow one connection at a time.
 
     std::cout << "Waiting for a BT connection...\n";
 
@@ -154,19 +184,26 @@ int run_bt_server()
     socklen_t opt = sizeof(rem_addr);
     int client = accept(sock, (struct sockaddr*)&rem_addr, &opt);
     std::cout << "BT connection accepted\n";
-
-    std::thread receiveThread(receive_data, client);
     bt_server_socket = client;
+    std::cout << "socket when connected to client:  " << bt_server_socket << "\n";
+    std::thread receiveThread(receive_data, client);
+
+
     while (true) 
     {   
         message_id+=1;
-        //Collect IMU data in the ITX (need to connect vectornav and make it work)
-        send_bt_message(form_imu_data(message_id, 1,1,1.2,2.3));
+        //Collect IMU data in the ITX (need to connect vectornav and make it work)        
+        if (message_queue.size() > 100)
+        {             
+            continue;          
+        }
+        send_bt_message(form_imu_data(message_id, ez));
         message_queue.push(message_id);
         std::this_thread::sleep_for(std::chrono::milliseconds(HELLO_RATE_MS));
     }
 
     receiveThread.join();
+    ez->disconnect();
     close(client);
     close(sock);
     return 0;
@@ -180,22 +217,24 @@ int run_bt_client(std::string remote_connection)
     server_addr.rc_family = AF_BLUETOOTH;
     const char* dest = remote_connection.c_str();
 
-    str2ba(dest, &server_addr.rc_bdaddr); // Replace with the server's address.
-    server_addr.rc_channel = 1;  // RFCOMM channel to use (must match the server).
+    str2ba("00:1A:7D:DA:71:13", &server_addr.rc_bdaddr); // Replace with the server's address.
+    server_addr.rc_channel = 3;  // RFCOMM channel to use (must match the server).
     
-    for (int i=0; i<5;i++)
+    for (int i=0; i<10;i++)
     {
         std::cout << "Connecting... Attempt: " << i+1 << "\n";
         status = connect(sock, (struct sockaddr*)&server_addr, sizeof(server_addr));
         if (status == 0)
+        {
+            std::cout << "Successfully connected to server." << "\n";
             break;
+        }
         std::this_thread::sleep_for(std::chrono::milliseconds(1500));
     }
 
     if (status < 0) {
         perror("Connection failed");
-        close(sock);
-        return 0;
+        close(sock);        
     }
 
     std::thread receiveThread(receive_data, sock);

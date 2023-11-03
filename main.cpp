@@ -11,8 +11,8 @@ int main()
 
     if (device == "itx")
     {
-        //run_bt_server();
-        run_eth_server();
+        run_bt_server();
+        //run_eth_server();
     }
     else if (device == "drone")
     {        
