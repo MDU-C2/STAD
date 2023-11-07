@@ -156,7 +156,7 @@ int run_bt_server() {
   loc_addr.rc_channel = 3;  // RFCOMM channel to use (e.g., 1).
 
   const std::string SensorPort =
-      "/dev/ttyUSB0";  // Linux format for virtual (USB) serial port.
+      "/dev/ttyUSB1";  // Linux format for virtual (USB) serial port.
   const uint32_t SensorBaudrate = 115200;
   ez = EzAsyncData::connect(SensorPort, SensorBaudrate);
 
