@@ -9,16 +9,7 @@ sudo apt install bluez
 sudo apt-get install libbluetooth-dev
 ```
 
-### Build the following on all devices
-```bash
-g++ main.cpp comms.cpp -o communication -lbluetooth -lpthread
-```
-On Ubuntu 16.04, build with following:
-```bash
-g++ -std=c++11 main.cpp comms.cpp -o communication -lbluetooth -lpthread
-```
-
-## Usage
+## Configuration
 Uncomment the configuration file depending on what device the program will run on
 
 ```python
@@ -36,8 +27,19 @@ remote_connection=XX:XX:XX:XX:XX:XX
 # Use this one together with device px2
 #remote_connection=XXX.XXX.XXX.XXX
 ```
-Then run: 
-```bash 
+
+### Build
+```bash
+g++ main.cpp comms.cpp -o communication -lbluetooth -lpthread
+```
+On Ubuntu 16.04, build with following:
+```bash
+g++ -std=c++11 main.cpp comms.cpp -o communication -lbluetooth -lpthread
+```
+
+### Run
+Make sure the configuration is correct for the device, it can be altered after building since the program reads from the configuration file on start-up.
+```
 ./communication.
 ```
 Preferably set this up so the program starts when the device boots.
