@@ -1,5 +1,0 @@
-#pragma onc
-
-struct WinKinematicsParams {
-    
-};
