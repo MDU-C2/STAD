@@ -4,7 +4,7 @@
 
 aksfhasglasdhngkajsdgklösdag
 
-´´´c++
+```c++
 #include <iostream>
 
 int main(int argc,  char** argv)
@@ -12,4 +12,4 @@ int main(int argc,  char** argv)
   std::cout << "Get fucked boiii\n";
   return 0;
 }
-´´´
+```
