@@ -9,7 +9,7 @@ aksfhasglasdhngkajsdgklösdag
 
 int main(int argc,  char** argv)
 {
-  std::cout << "Get fucked boiii\n";
+  std::cout << "( -_-)..zzZZ\n";
   return 0;
 }
 ```
