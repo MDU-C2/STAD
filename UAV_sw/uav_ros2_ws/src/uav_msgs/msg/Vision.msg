@@ -1,0 +1,9 @@
+int32 red_x
+int32 red_y
+int32 red_width
+int32 red_height
+int32 blue_x
+int32 blue_y
+int32 blue_width
+int32 blue_height
+float32 time_seconds

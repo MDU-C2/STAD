@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+        'vision_node = uav_py.vision_node:main'
         ],
     },
 )

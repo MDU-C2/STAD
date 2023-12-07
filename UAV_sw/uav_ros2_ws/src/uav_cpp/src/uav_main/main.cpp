@@ -17,10 +17,85 @@
 #include <uav_msgs/msg/control_input.hpp>
 #include <uav_msgs/msg/control_mode.hpp>
 #include <uav_msgs/msg/kinematics.hpp>
+#include <uav_msgs/msg/vision.hpp>
 
 #include "mav_util.h"
 #include "kinematics.h"
 #include "PID.h"
+
+struct TargetData
+{
+    // meters
+    float side_axis;        // Right is positive    (camera y)
+    float travel_axis;      // Forward is positive  (camera x)
+    float depth;
+    
+    // radians
+    float angle;
+};
+
+TargetData g_target;
+
+struct Vector2
+{
+    float x;
+    float y;
+};
+
+std::mutex g_vision_mutex;
+float g_focal_length;
+
+void vision_callback(const uav_msgs::msg::Vision::SharedPtr msg)
+{
+    std::unique_lock<std::mutex> lock(g_vision_mutex);
+    // process vision
+
+    // Vision Resolution 640 * 640
+
+    float x = (float(msg->red_x + msg->blue_x - 640)) / 2.0f;
+    float y = (float(msg->red_y + msg->blue_y - 640)) / 2.0f;
+    float width = (float(msg->red_width + msg->blue_width)) / 2.0f;
+    float height = (float(msg->red_height + msg->blue_height)) / 2.0f;
+    float size = std::max(width, height);
+    float delta_x = msg->blue_x - msg->red_x;
+    float delta_y = msg->blue_x - msg->red_y;
+    
+    // Arbitrary value used for converting size to distance.
+    // It is based of the focal length of the camera and real life size of object.
+    // Here we used trial and error :)
+    float target_size = 0.187f;           // in meters
+    //constexpr float focal_length = 427.807486631;   // in pixels
+    float depth_factor = (target_size * g_focal_length); // 180.0f;
+
+    float depth = depth_factor / size; // meters
+
+    // Create forward vector (vec1) and target vector (vec2)
+    // Camera is positioned such that forward is to the right
+    Vector2 vec1 = { 1.0f, 0.0f };
+    Vector2 vec2 = { delta_x, -delta_y };
+
+    // Calculate angle difference of forward vector
+    // and target vector (red target to blue target)
+    float dot_product = vec1.x * vec2.x + vec1.y * vec2.y;
+    float mag1 = std::sqrt(vec1.x * vec1.x + vec1.y * vec1.y);
+    float mag2 = std::sqrt(vec2.x * vec2.x + vec2.y * vec2.y);
+    float cos_theta = dot_product / (mag1 * mag2);
+    float angle_radians = std::acos(cos_theta);
+    //float angle_degrees = angle_rad * (180.0f / M_PI);
+
+
+    // TODO: make meters
+    // x and y are arbitrary pixel units now
+    g_target.side_axis = y / depth_factor;
+    g_target.travel_axis = x / depth_factor;
+    g_target.depth = depth;
+    g_target.angle = angle_radians; // angle_degrees
+
+    std::cout << "forward: " << g_target.travel_axis << "\n";
+    std::cout << "right: " << g_target.side_axis << "\n";
+    std::cout << "altitude: " << g_target.depth << "\n";
+    std::cout << "angle: " << g_target.angle << "\n\n";
+}
 
 using namespace mavsdk;
 
@@ -88,6 +163,8 @@ void spin_task(rclcpp::Node::SharedPtr node)
 
 int main(int argc, char** argv)
 {
+    g_focal_length = std::stoi(argv[1]);
+
     signal(SIGINT, sigint_handler);
     rclcpp::init(argc, argv);
     auto node = rclcpp::Node::make_shared("uav_main_node");
@@ -112,7 +189,11 @@ int main(int argc, char** argv)
     auto sub_control_input = node->create_subscription<uav_msgs::msg::ControlInput>("ci", 10, control_input_callback);
 	//auto p7 = node->create_subscription<uav_msgs::msg::ControlMode>("cm", 10);
 
+    auto sub_vision = node->create_subscription<uav_msgs::msg::Vision>("vision_topic", 10, vision_callback);
+
     std::thread spin_thread(spin_task, node);
+
+    std::this_thread::sleep_for(std::chrono::seconds(1000));
 
     Mavsdk mavsdk;
     g_mavsdk = &mavsdk;

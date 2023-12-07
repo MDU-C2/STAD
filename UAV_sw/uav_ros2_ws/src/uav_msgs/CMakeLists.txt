@@ -28,6 +28,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/ControlInput.msg"
   "msg/ControlMode.msg"
   "msg/Kinematics.msg"
+  "msg/Vision.msg"
 )
 
 ament_export_dependencies(rosidl_default_runtime)
