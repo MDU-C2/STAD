@@ -1,4 +1,7 @@
 # Essential
+
+These are used for development. See guides.
+
 ### MAVSDK
 MAVSDK is the main library used for developing the drone. This library must be compiled.
 
