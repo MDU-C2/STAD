@@ -1,4 +1,6 @@
-# ROS2 installation guide
+# ROS2
+
+### Installation
 
 Run the following commands for a full installation
 
@@ -29,3 +31,44 @@ source /opt/ros/foxy/setup.bash
 ```
 
 It is advisable to add it to the .bashrc file in ubntu. Then this command will run when ubuntu is booting every time.
+
+### PX4 messaging
+
+To be able to use px4 specific ros messages, px4_msgs is needed. Additionally px4_ros_com is useful as it contains code examples.
+
+```bash
+mkdir -p ~/px4_ros2_ws/src/
+cd ~/px4_ros2_ws/src/ 
+
+git clone https://github.com/PX4/px4_msgs.git  
+git clone https://github.com/PX4/px4_ros_com.git  
+ 
+cd ..
+
+source /opt/ros/foxy/setup.bash 
+
+colcon build
+```
+
+Then to use these nodes and messages you need to source the install folder. Run this and add it to .bashrc:
+
+```bash
+source ~/px4_ros2_ws/install/setup.bash
+```
+
+### Micro-XRCE-DDS-Agent installation
+
+Having the px4 messages and ros2 is not enough for ros communication with the flight controller. Micro-XRCE-DDS-Agent is a small software that is able to communicate with the flight controller, and all the px4 messages will communicate with the flight controller indirectly via this program. Here is how to install it.
+
+```bash
+git clone https://github.com/eProsima/Micro-XRCE-DDS-Agent.git 
+cd Micro-XRCE-DDS-Agent 
+mkdir build 
+cd build 
+cmake .. 
+Make 
+sudo make install 
+sudo ldconfig /usr/local/lib/ 
+```
+
+ 
