@@ -1,5 +1,7 @@
 # ROS2 installation guide
 
+Run the following commands for a full installation
+
 ```bash
 locale (verify that we use utf-8)
 sudo locale-gen en_US en_US.UTF-8
