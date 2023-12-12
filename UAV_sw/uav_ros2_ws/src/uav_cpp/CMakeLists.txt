@@ -57,9 +57,6 @@ if (USE_UAV_GUI)
 
   find_package(glfw3 REQUIRED)
 
-  # include imgui
-  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../imgui/src)
-
   # Create uav_main executable
   add_executable(uav_gui
     src/uav_gui/main.cpp
@@ -69,13 +66,13 @@ if (USE_UAV_GUI)
     src/uav_gui/win_kinematics.cpp
 
     # imgui include src relatively lmao
-    ../../../imgui/src/imgui/imgui_demo.cpp
-    ../../../imgui/src/imgui/imgui_draw.cpp
-    ../../../imgui/src/imgui/imgui_impl_glfw.cpp
-    ../../../imgui/src/imgui/imgui_impl_opengl3.cpp
-    ../../../imgui/src/imgui/imgui_tables.cpp
-    ../../../imgui/src/imgui/imgui_widgets.cpp
-    ../../../imgui/src/imgui/imgui.cpp
+    src/uav_gui/imgui/imgui_demo.cpp
+    src/uav_gui/imgui_draw.cpp
+    src/uav_gui/imgui_impl_glfw.cpp
+    src/uav_gui/imgui_impl_opengl3.cpp
+    src/uav_gui/imgui_tables.cpp
+    src/uav_gui/imgui_widgets.cpp
+    src/uav_gui/imgui.cpp
   )
 
   # Link ros2 stuff using ament linker
