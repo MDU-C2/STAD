@@ -22,82 +22,19 @@
 #include "mav_util.h"
 #include "kinematics.h"
 #include "PID.h"
+#include "vision.h"
 
-struct TargetData
-{
-    // meters
-    float side_axis;        // Right is positive    (camera y)
-    float travel_axis;      // Forward is positive  (camera x)
-    float depth;
-    
-    // radians
-    float angle;
-};
+using namespace mavsdk;
 
 TargetData g_target;
-
-struct Vector2
-{
-    float x;
-    float y;
-};
-
 std::mutex g_vision_mutex;
-float g_focal_length;
 
 void vision_callback(const uav_msgs::msg::Vision::SharedPtr msg)
 {
     std::unique_lock<std::mutex> lock(g_vision_mutex);
-    // process vision
-
-    // Vision Resolution 640 * 640
-
-    float x = (float(msg->red_x + msg->blue_x - 640)) / 2.0f;
-    float y = (float(msg->red_y + msg->blue_y - 640)) / 2.0f;
-    float width = (float(msg->red_width + msg->blue_width)) / 2.0f;
-    float height = (float(msg->red_height + msg->blue_height)) / 2.0f;
-    float size = std::max(width, height);
-    float delta_x = msg->blue_x - msg->red_x;
-    float delta_y = msg->blue_x - msg->red_y;
-    
-    // Arbitrary value used for converting size to distance.
-    // It is based of the focal length of the camera and real life size of object.
-    // Here we used trial and error :)
-    float target_size = 0.187f;           // in meters
-    //constexpr float focal_length = 427.807486631;   // in pixels
-    float depth_factor = (target_size * g_focal_length); // 180.0f;
-
-    float depth = depth_factor / size; // meters
-
-    // Create forward vector (vec1) and target vector (vec2)
-    // Camera is positioned such that forward is to the right
-    Vector2 vec1 = { 1.0f, 0.0f };
-    Vector2 vec2 = { delta_x, -delta_y };
-
-    // Calculate angle difference of forward vector
-    // and target vector (red target to blue target)
-    float dot_product = vec1.x * vec2.x + vec1.y * vec2.y;
-    float mag1 = std::sqrt(vec1.x * vec1.x + vec1.y * vec1.y);
-    float mag2 = std::sqrt(vec2.x * vec2.x + vec2.y * vec2.y);
-    float cos_theta = dot_product / (mag1 * mag2);
-    float angle_radians = std::acos(cos_theta);
-    //float angle_degrees = angle_rad * (180.0f / M_PI);
-
-
-    // TODO: make meters
-    // x and y are arbitrary pixel units now
-    g_target.side_axis = y / depth_factor;
-    g_target.travel_axis = x / depth_factor;
-    g_target.depth = depth;
-    g_target.angle = angle_radians; // angle_degrees
-
-    std::cout << "forward: " << g_target.travel_axis << "\n";
-    std::cout << "right: " << g_target.side_axis << "\n";
-    std::cout << "altitude: " << g_target.depth << "\n";
-    std::cout << "angle: " << g_target.angle << "\n\n";
+    g_target = calculate_target_data(msg);
+    print_target_data(g_target);
 }
-
-using namespace mavsdk;
 
 // This mutex is for synchronization between main and revc_msg_callback.
 // Otherwise we can get problems if the access the same variables at the same time.
@@ -109,7 +46,6 @@ Mavsdk* g_mavsdk = nullptr;
 Action* g_action = nullptr;
 Telemetry* g_telemetry = nullptr;
 ManualControl* g_manual_control = nullptr;
-
 Kinematics* g_kinematics = nullptr;
 
 // UAV manual control
@@ -163,8 +99,6 @@ void spin_task(rclcpp::Node::SharedPtr node)
 
 int main(int argc, char** argv)
 {
-    g_focal_length = std::stoi(argv[1]);
-
     signal(SIGINT, sigint_handler);
     rclcpp::init(argc, argv);
     auto node = rclcpp::Node::make_shared("uav_main_node");
@@ -193,12 +127,12 @@ int main(int argc, char** argv)
 
     std::thread spin_thread(spin_task, node);
 
-    std::this_thread::sleep_for(std::chrono::seconds(1000));
+    //std::this_thread::sleep_for(std::chrono::seconds(1000));
 
     Mavsdk mavsdk;
     g_mavsdk = &mavsdk;
 
-    if (!mav_connect(mavsdk,"udp://:14540"))
+    if (!mav_connect(mavsdk, "udp://192.168.0.4:14550"))
         return -1;
     
     std::shared_ptr<System> system;
@@ -264,7 +198,7 @@ int main(int argc, char** argv)
     if (!mav_start_altitude_control(manual_control))
         return -1;
 
-    // GUI control
+    // Manual control from GUI application
     if (true)
     {
         while (true)
@@ -277,14 +211,15 @@ int main(int argc, char** argv)
         }
     }
 
-    // Autonomous
+    // Autonomous flight
     else
     {
-        PID pid_throttle(0.01f, 0.01f, 0.01f);
-        PID pid_yaw(0.01f, 0.01f, 0.01f);
-        PID pid_pitch(0.01f, 0.01f, 0.01f);
-        PID pid_roll(0.01f, 0.01f, 0.01f);
+        // static PID pid_throttle(0.01f, 0.01f, 0.01f);
+        // static PID pid_yaw(0.01f, 0.01f, 0.01f);
+        // static PID pid_pitch(0.01f, 0.01f, 0.01f);
+        // static PID pid_roll(0.01f, 0.01f, 0.01f);
 
+        // Some algorithm is needed here.
         float throttle = 0.0f;
         while (true)
         {

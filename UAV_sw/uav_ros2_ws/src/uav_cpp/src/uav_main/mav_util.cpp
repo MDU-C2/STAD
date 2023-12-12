@@ -43,7 +43,6 @@ bool mav_find_system(Mavsdk& mavsdk, std::shared_ptr<System>& system)
 
 bool mav_wait_until_ready(const Telemetry& telemetry)
 {
-    const int try_count = 10;
     bool ready = false;
 
     for (int i = 0; !(ready = telemetry.health_all_ok()); i++) {

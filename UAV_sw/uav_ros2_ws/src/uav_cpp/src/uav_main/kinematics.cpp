@@ -11,15 +11,15 @@ Kinematics::Kinematics()
     m_last_angular = {};
     m_last_timestamp_us_lin = 0;
     m_last_timestamp_us_ang = 0;
-    m_damp_factor = 0.95f;
-    m_trust_factor = 0.2f;
+    //m_damp_factor = 0.95f;
+    //m_trust_factor = 0.2f;
 }
 
 void Kinematics::add_acc_linear(Telemetry::AccelerationFrd acc, uint64_t timestamp_us)
 {
-    if (std::abs(acc.forward_m_s2) < m_trust_factor) acc.forward_m_s2 = 0.0f;
-    if (std::abs(acc.right_m_s2) < m_trust_factor) acc.right_m_s2 = 0.0f;
-    if (std::abs(acc.down_m_s2) < m_trust_factor) acc.down_m_s2 = 0.0f;
+    //if (std::abs(acc.forward_m_s2) < m_trust_factor) acc.forward_m_s2 = 0.0f;
+    //if (std::abs(acc.right_m_s2) < m_trust_factor) acc.right_m_s2 = 0.0f;
+    //if (std::abs(acc.down_m_s2) < m_trust_factor) acc.down_m_s2 = 0.0f;
 
     acc.down_m_s2 += 9.82f;
     m_linear.acc = acc;
@@ -52,10 +52,10 @@ void Kinematics::add_vel_angular(Telemetry::AngularVelocityFrd vel, uint64_t tim
     m_last_timestamp_us_ang = timestamp_us;
 
     // Some filtering
-    m_linear.vel *= m_damp_factor;
-    m_linear.pos *= m_damp_factor;
-    m_angular.acc *= m_damp_factor;
-    m_angular.pos *= m_damp_factor;
+    //m_linear.vel *= m_damp_factor;
+    //m_linear.pos *= m_damp_factor;
+    //m_angular.acc *= m_damp_factor;
+    //m_angular.pos *= m_damp_factor;
 }
 
 KinVec3 Kinematics::get_acc_linear()

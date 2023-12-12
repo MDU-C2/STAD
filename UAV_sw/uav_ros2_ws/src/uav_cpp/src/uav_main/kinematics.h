@@ -14,6 +14,10 @@ struct KinMat3x3;
 // This class integrates acc, vel and pos over time
 // both linearly and angular so the UAV knows
 // its transform in the world.
+
+// The idea was to read IMU data which provides acceleration
+// and then calculate velocity and position from that. In practice
+// this works very bad and this should not be used.
 class Kinematics;
 
 struct KinVec3
