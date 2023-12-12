@@ -70,5 +70,5 @@ How far in front of the camera, the average position of the targets are.
 If the target is in front of the drone, this value is positive.
 
 ### angle
-The difference of the angle of the targets (red to blue) and the forward direction of the drone is.
+The angular difference of the target vector (red target towards blue target) and the forward direction of the drone.
 If the drone is rotated clockwise, this value is positive. Right now we use radians.
